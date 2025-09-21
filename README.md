@@ -135,43 +135,30 @@ The system defines a new scene when a plate recognized significantly differs fro
 > **This flowchart shows our pipeline end-to-end** (from annotation -> localization -> enhancement/segmentation -> recognition -> voting/validation -> output).
 
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
-    %% ---- STAGE 0: START / ANNOTATION ----
     A["Start"] --> B["Annotate"]
     B --> C["Localization of Plates"]
-
-    %% ---- STAGE 1: LOCALIZATION (WHITE / YELLOW) ----
     C --> D["White Plate Algorithm"]
     C --> E["Yellow Plate Algorithm"]
     D --> F["Evaluate"]
     E --> F
-
-    %% ---- STAGE 2: PRE-PROCESS / CROPPING ----
     F --> G["Edge Detection"]
     G --> H["Cropped Plates Segmenation"]
     H --> I["Pre Process Plates"]
-
-    %% ---- STAGE 3: QUALITY-DEPENDENT ENHANCEMENT ----
     I --> J{"Is the image quality sufficient?"}
     J -- "Yes" --> K["Default Plates Enchanment"]
     J -- "No"  --> L["Low Quality Plates Enchanment"]
     K --> M["Contours"]
     L --> M
     M --> N["Color Mask"]
-
-    %% ---- STAGE 4: CHARACTER RECOGNITION PATH ----
     N --> O["Compare With Reference Characters"]
     O --> P{"Is at least 6 characters recognized?"}
     P -- "No"  --> Q["Ignore"]
     P -- "Yes" --> R["Add to Recognized Plates Array"]
-
-    %% ---- STAGE 5: STANDARDIZATION & VALIDITY ----
     R --> S["Standardize Plate"]
     S --> T["Add Relavent Dash (-)"]
     T --> U["Check Validty"]
-
-    %% ---- STAGE 6: DETECTION / FILTERING ----
     U --> V["Detect the transition"]
     V --> W["Filter out non-valid plates"]
     W --> X{"Is detected?"}
@@ -181,7 +168,7 @@ flowchart LR
     Y2 --> Z["Custom DB"]
     Z --> Z2["Evaluate"]
     Z2 --> AA["Return the Plate"]
-```
+</pre>
 
 ## User Interface
 
