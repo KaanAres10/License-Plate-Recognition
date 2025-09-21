@@ -195,8 +195,7 @@ This makes it easier to debug each stage of the pipeline (localization, segmenta
 - Category 2: 60%  
 - Category 3: 30%  
 - Category 4: 0%  
-
-- System performs as expected on Category 1. In Category 2, the non-cut nature of the video causes errors. In Category 3, multiple plates and lower resolution reduce accuracy. Category 4 was not prioritized.  
+-System performs as expected on Category 1. In Category 2, the non-cut nature of the video causes errors. In Category 3, multiple plates and lower resolution reduce accuracy. Category 4 was not prioritized.  
 ---
 
 ## Weaknesses of the Current System
