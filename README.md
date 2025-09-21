@@ -135,7 +135,7 @@ The system defines a new scene when a plate recognized significantly differs fro
 > **This flowchart shows our pipeline end-to-end** (from annotation -> localization -> enhancement/segmentation -> recognition -> voting/validation -> output).
 
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
   A["Start"] --> B["Annotate"]
   B --> C["Localization of Plates"]
@@ -168,7 +168,10 @@ flowchart LR
   Y2 --> Z["Custom DB"]
   Z --> Z2["Evaluate"]
   Z2 --> AA["Return the Plate"]
-```
+</pre>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, theme: "default" });</script>
 
 ## User Interface
 
