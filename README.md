@@ -132,7 +132,9 @@ The system defines a new scene when a plate recognized significantly differs fro
 - **Levenshtein distance** is used to measure differences between plates from frame to frame.  
 - Within a scene, majority voting is applied across frames. Plates that don’t fit the Dutch standard are filtered out before voting.  
 
-> **This flowchart shows our pipeline end-to-end** (from annotation -> localization -> enhancement/segmentation -> recognition -> voting/validation -> output).  
+> **This flowchart shows our pipeline end-to-end** (from annotation -> localization -> enhancement/segmentation -> recognition -> voting/validation -> output).
+
+
 ```mermaid
 flowchart LR
     %% ---- STAGE 0: START / ANNOTATION ----
