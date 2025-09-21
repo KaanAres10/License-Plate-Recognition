@@ -10,7 +10,7 @@ The allocation of data into training and evaluation sets is done randomly, prese
 
 **Example annotation**
 
-![Manually Annotated Label of the Car](doc/label.png)
+![Manually Annotated Label of the Car](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/label.png?raw=true)
 
 ---
 
@@ -27,7 +27,7 @@ After that, we use contour to fit the shape of the plate by taking into account 
 
 **Resulting plate after filtering**
 
-![Resulting Plate after the filtering](doc/plate.png)
+![Resulting Plate after the filtering](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/plate.png?raw=true)
 
 ### Evaluation (Localization)
 Our model has achieved the following accuracy in each given group. We used the IoU model for our evaluation and put a threshold of 0.5.
@@ -51,7 +51,7 @@ Adaptive thresholding handles varying lighting conditions by dynamically selecti
 
 **Thresholded example**
 
-![Thresholded Plate](doc/Thresholded%20Plate.png)
+![Thresholded Plate](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/Thresholded%20Plate.png?raw=true)
 
 ### 3. Dynamic Kernel
 A 3x3 kernel is initially used for morphological operations.  
@@ -69,12 +69,12 @@ Contours are filtered based on:
 **Character crops (examples)**
 
 <p align="center">
-  <img src="doc/9.png"  width="56" alt="9"/>
-  <img src="doc/2.png"  width="56" alt="2"/>
-  <img src="doc/g.png"  width="56" alt="g"/>
-  <img src="doc/s.png"  width="56" alt="s"/>
-  <img src="doc/v.png"  width="56" alt="v"/>
-  <img src="doc/h.png"  width="56" alt="h"/>
+  <img src="https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/9.png?raw=true"  width="56" alt="9"/>
+  <img src="https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/2.png?raw=true"  width="56" alt="2"/>
+  <img src="https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/g.png?raw=true"  width="56" alt="g"/>
+  <img src="https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/s.png?raw=true"  width="56" alt="s"/>
+  <img src="https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/v.png?raw=true"  width="56" alt="v"/>
+  <img src="https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/h.png?raw=true"  width="56" alt="h"/>
 </p>
 
 ### 5. Character Patch Extraction
@@ -94,7 +94,7 @@ Recognized characters are sorted left to right based on their x-coordinates to e
 
 **Visualization**
 
-![Plate with Recognized Characters](doc/myplot.png)
+![Plate with Recognized Characters](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/myplot.png?raw=true)
 
 ### 9. Filtering Ambiguous Results
 Plates with fewer than four valid characters or those with exclusively unrecognized characters ('?') are discarded to minimize false positives.
@@ -193,7 +193,7 @@ Through the interface, a user can:
 
 This makes it easier to debug each stage of the pipeline (localization, segmentation, recognition) and to evaluate the system visually.
 
-![User Interface](doc/user_interface.png)
+![User Interface](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/user_interface.png)
 
 *User interface for plate detection and recognition.*
 
