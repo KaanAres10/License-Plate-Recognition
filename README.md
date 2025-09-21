@@ -135,40 +135,40 @@ The system defines a new scene when a plate recognized significantly differs fro
 > **This flowchart shows our pipeline end-to-end** (from annotation -> localization -> enhancement/segmentation -> recognition -> voting/validation -> output).
 
 
-<pre class="mermaid">
+```mermaid
 flowchart LR
-    A["Start"] --> B["Annotate"]
-    B --> C["Localization of Plates"]
-    C --> D["White Plate Algorithm"]
-    C --> E["Yellow Plate Algorithm"]
-    D --> F["Evaluate"]
-    E --> F
-    F --> G["Edge Detection"]
-    G --> H["Cropped Plates Segmenation"]
-    H --> I["Pre Process Plates"]
-    I --> J{"Is the image quality sufficient?"}
-    J -- "Yes" --> K["Default Plates Enchanment"]
-    J -- "No"  --> L["Low Quality Plates Enchanment"]
-    K --> M["Contours"]
-    L --> M
-    M --> N["Color Mask"]
-    N --> O["Compare With Reference Characters"]
-    O --> P{"Is at least 6 characters recognized?"}
-    P -- "No"  --> Q["Ignore"]
-    P -- "Yes" --> R["Add to Recognized Plates Array"]
-    R --> S["Standardize Plate"]
-    S --> T["Add Relavent Dash (-)"]
-    T --> U["Check Validty"]
-    U --> V["Detect the transition"]
-    V --> W["Filter out non-valid plates"]
-    W --> X{"Is detected?"}
-    X -- "No"  --> Q
-    X -- "Yes" --> Y["SIFT Descriptor"]
-    Y --> Y2["Keypoints"]
-    Y2 --> Z["Custom DB"]
-    Z --> Z2["Evaluate"]
-    Z2 --> AA["Return the Plate"]
-</pre>
+  A["Start"] --> B["Annotate"]
+  B --> C["Localization of Plates"]
+  C --> D["White Plate Algorithm"]
+  C --> E["Yellow Plate Algorithm"]
+  D --> F["Evaluate"]
+  E --> F
+  F --> G["Edge Detection"]
+  G --> H["Cropped Plates Segmentation"]
+  H --> I["Pre Process Plates"]
+  I --> J{"Is the image quality sufficient?"}
+  J -- "Yes" --> K["Default Plates Enhancement"]
+  J -- "No"  --> L["Low Quality Plates Enhancement"]
+  K --> M["Contours"]
+  L --> M
+  M --> N["Color Mask"]
+  N --> O["Compare With Reference Characters"]
+  O --> P{"Is at least 6 characters recognized?"}
+  P -- "No" --> Q["Ignore"]
+  P -- "Yes" --> R["Add to Recognized Plates Array"]
+  R --> S["Standardize Plate"]
+  S --> T["Add Relevant Dash (-)"]
+  T --> U["Check Validity"]
+  U --> V["Detect the transition"]
+  V --> W["Filter out non-valid plates"]
+  W --> X{"Is detected?"}
+  X -- "No" --> Q
+  X -- "Yes" --> Y["SIFT Descriptor"]
+  Y --> Y2["Keypoints"]
+  Y2 --> Z["Custom DB"]
+  Z --> Z2["Evaluate"]
+  Z2 --> AA["Return the Plate"]
+```
 
 ## User Interface
 
