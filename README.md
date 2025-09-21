@@ -170,95 +170,25 @@ flowchart LR
   Z2 --> AA["Return the Plate"]
 </pre>
 
-<!-- 1) Pan + Zoom for Mermaid diagram -->
+<!-- Mermaid + Panzoom -->
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
 <script>
-  // Render Mermaid
-  mermaid.initialize({ startOnLoad: true, theme: "default", securityLevel: "loose" });
+  mermaid.initialize({ startOnLoad: true, theme: "default" });
 
-  // After Mermaid renders, enable pan/zoom on the generated SVG
   document.addEventListener("DOMContentLoaded", () => {
-    const observe = new MutationObserver(() => {
-      document.querySelectorAll(".mermaid").forEach((el) => {
-        // already enhanced?
-        if (el.dataset.panzoomAttached === "1") return;
-        const svg = el.querySelector("svg");
-        if (svg) {
-          // Wrap svg in a container so panzoom has a stable element
-          let wrapper = document.createElement("div");
-          wrapper.style.border = "1px solid #e5e7eb";
-          wrapper.style.borderRadius = "10px";
-          wrapper.style.overflow = "hidden";
-          wrapper.style.maxWidth = "100%";
-          wrapper.style.touchAction = "none";
-          el.parentNode.insertBefore(wrapper, el);
-          wrapper.appendChild(el);
-
-          const panzoom = Panzoom(svg, {
-            contain: "outside",
-            cursor: "grab",
-            step: 0.25,
-          });
-          // Mouse wheel zoom
-          wrapper.addEventListener("wheel", (e) => {
-            e.preventDefault();
-            const delta = e.deltaY < 0 ? 1 : -1;
-            panzoom.zoomWithWheel(e, { step: delta * 0.1 });
-          });
-          // Drag to pan
-          svg.addEventListener("mousedown", () => panzoom.setOptions({ cursor: "grabbing" }));
-          svg.addEventListener("mouseup",   () => panzoom.setOptions({ cursor: "grab" }));
-          el.dataset.panzoomAttached = "1";
-        }
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll(".mermaid svg").forEach((svg) => {
+        if (svg.dataset.panzoomAttached) return;
+        const pz = Panzoom(svg, { contain: "outside", cursor: "grab", step: 0.25 });
+        svg.parentElement.addEventListener("wheel", (e) => {
+          e.preventDefault();
+          pz.zoomWithWheel(e);
+        });
+        svg.dataset.panzoomAttached = "1";
       });
     });
-    observe.observe(document.body, { childList: true, subtree: true });
-  });
-</script>
-
-<!-- 2) Interactive image viewer (click to zoom, drag to pan) -->
-<style>
-  .iv-wrap { margin: 16px 0; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; max-width: 100%; }
-  .iv-toolbar { display:flex; gap:8px; align-items:center; padding:8px; border-bottom:1px solid #e5e7eb; background:#fafafa; }
-  .iv-toolbar button { padding:6px 10px; border:1px solid #ddd; background:#fff; border-radius:6px; cursor:pointer; }
-  .iv-stage { width:100%; height:min(70vh, 600px); background:#fff; position:relative; touch-action:none; }
-  .iv-stage img { user-select:none; -webkit-user-drag:none; pointer-events:none; /* let panzoom handle events */ }
-</style>
-
-<div class="iv-wrap" id="ui-viewer">
-  <div class="iv-toolbar">
-    <strong>UI Viewer</strong>
-    <button data-iv="zoom-in">Zoom In</button>
-    <button data-iv="zoom-out">Zoom Out</button>
-    <button data-iv="reset">Reset</button>
-  </div>
-  <div class="iv-stage">
-    <img id="ui-image"
-         src="https://raw.githubusercontent.com/KaanAres10/License-Plate-Recognition/web/doc/user_interface.png"
-         alt="User Interface"
-         width="1600" height="900" />
-  </div>
-</div>
-
-<script>
-  // Panzoom for UI image
-  document.addEventListener("DOMContentLoaded", () => {
-    const img = document.getElementById("ui-image");
-    if (!img) return;
-    const pz = Panzoom(img, { contain: "outside", cursor: "grab" });
-
-    // wheel to zoom
-    img.parentElement.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      pz.zoomWithWheel(e);
-    });
-
-    // toolbar actions
-    const wrap = document.getElementById("ui-viewer");
-    wrap.querySelector('[data-iv="zoom-in"]').addEventListener("click", () => pz.zoomIn());
-    wrap.querySelector('[data-iv="zoom-out"]').addEventListener("click", () => pz.zoomOut());
-    wrap.querySelector('[data-iv="reset"]').addEventListener("click", () => pz.reset());
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 </script>
 
@@ -274,7 +204,7 @@ Through the interface, a user can:
 
 This makes it easier to debug each stage of the pipeline (localization, segmentation, recognition) and to evaluate the system visually.
 
-![User Interface](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/user_interface.png)
+![User Interface](https://github.com/KaanAres10/License-Plate-Recognition/blob/web/doc/user_interface.png?raw=true)
 
 *User interface for plate detection and recognition.*
 
