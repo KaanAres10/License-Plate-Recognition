@@ -1,5 +1,3 @@
-# License Plate Recognition
-
 ## Description
 Automatic License Plate Recognition system built in Python.  
 The pipeline includes plate localization, segmentation, character extraction, and recognition using feature descriptors and k-NN classification.      
