@@ -216,3 +216,7 @@ This makes it easier to debug each stage of the pipeline (localization, segmenta
 ## Tech
 - Python
 - OpenCV
+
+---
+## Authors
+Created by Kaan Altıntaş & Batu Eren
